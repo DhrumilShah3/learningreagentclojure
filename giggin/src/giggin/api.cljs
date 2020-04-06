@@ -4,7 +4,6 @@
 
 (defn index-by
   [key coll]
-  "Transfomr a coll to a map with a given key as a lookup value"
   (->> coll
        (map (juxt key identity))
        (into {})))
@@ -13,7 +12,7 @@
   (reset! state/gigs (index-by :id response)))
 
 (defn error-handler [{:keys [status status-text]}]
-  (.log js/console (str "something bad happened: " status " " status-text)))
+  (.log js/console (str "error: " status " " status-text)))
 
 (defn fetch-gigs
   []
